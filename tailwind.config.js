@@ -1,6 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./**/*.{html,js}"],
+  content: [
+    "./*.html",
+    "./static/**/*.js",
+    // Add other specific paths to your actual content files
+  ],
   theme: {
     extend: {
       colors: {
@@ -32,19 +36,19 @@ module.exports = {
           '100%': { transform: 'rotate(360deg)' }
         },
         'pattern-move': {
-          '0%': { 
-            backgroundPosition: '0 0' 
+          '0%': {
+            backgroundPosition: '0 0'
           },
-          '100%': { 
-            backgroundPosition: '64px 64px' 
+          '100%': {
+            backgroundPosition: '64px 64px'
           }
         },
         'pattern-move-slow': {
-          '0%': { 
-            backgroundPosition: '0 0' 
+          '0%': {
+            backgroundPosition: '0 0'
           },
-          '100%': { 
-            backgroundPosition: '128px 128px' 
+          '100%': {
+            backgroundPosition: '128px 128px'
           }
         }
       },
