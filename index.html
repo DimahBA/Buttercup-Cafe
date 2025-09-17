@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./output.css" rel="stylesheet">
+</head>
+
+<body class="bg-beige">
+    <div class="bg-green min-h-screen flex items-center justify-center flex-col">
+        <img src="./static/PixelArt/cafe_sprite.png" alt="Cafe Sprite" class="max-w-3xl w-full">
+    </div>
+
+    <div
+        class="bg-[url(./static/background.svg)] md:bg-[length:512px_512px] bg-[length:300px_300px] bg-repeat h-32 w-full">
+
+    </div>
+    <!-- INTRO SECTION -->
+    <section class="w-full flex flex-col items-center justify-center">
+        <!-- Pattern background with fixed height -->
+        <div class="bg-pattern animate-pattern-diagonal w-full h-64 relative">
+        </div>
+        
+        <!-- Content positioned on top -->
+        <div class="flex items-center flex-col w-full -mt-16 relative z-10">
+          <div class="relative -translate-x-20">
+            <img src="./static/chat-bubble.png" class="w-52">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <span class="text-lg md:text-2xl font-serif transform -translate-y-2">HI, I'M DIMAH</span>
+            </div>
+          </div>
+          <div class="bg-orange flex items-center justify-center w-52 md:w-52 rounded-full p-5">
+            <img src="./static/PixelArt/myChibi-cropped.png" alt="Pixel art chibi" class="">
+          </div>
+          <img src="./static/PixelArt/sunflower.png" class="absolute w-12 translate-y-56 translate-x-20" alt="">
+        </div>
+        
+        <!-- Text section -->
+        <div class="w-full flex justify-center py-8">
+          <div class="w-[26em]">
+            <p class="font-serif text-center">
+              I'm an IT student who likes cute things, music and coffee. This website is my attempt to recreate the
+              peacefulness that coffee gives me in the digital world, a place to take a breather from the constant
+              motion of the internet
+            </p>
+          </div>
+        </div>
+      </section>
+
+    <!--             
+            <section class="w-full flex flex-col gap-4 px-3 md:px-20">
+
+                <div class="flex gap-4 flex-row items-center md:flex-row">
+                    <img src="./static/PixelArt/sunflower.png" class="w-10 md:w-14 hover:animate-accelerated-spin"
+                        alt="sunflower">
+                    <h1 class="font-serif font-semibold text-xl md:text-3xl h-fit">Nice to meet you, I'm Dimah</h1>
+                </div>
+                <div class="flex flex-col items-center md:flex-row gap-8 md:px-20">
+                    <div
+                        class="border-[3px] border-black bg-off-white p-5 flex items-center justify-center w-52 md:w-72">
+                        <img src="./static/PixelArt/myChibi-cropped.png" alt="Pixel art chibi" class="md:w-72">
+                    </div>
+                    <div class="space-y-4 px-8 md:px-0 font-serif md:text-xl">
+                        <p>Cozy coffee shops have always been my sanctuary. The aroma of freshly brewed coffee and
+                            the warm, inviting atmosphere never fail to bring me peace.</p>
+                        <p>This website is my attempt to recreate that feeling in the digital world, a place to take
+                            a breather from the constant motion of the internet.</p>
+                        <p>Welcome, and enjoy your stay in this little corner of the web.</p>
+                    </div>
+                </div>
+            </section>
+        -->
+
+    <!-- MENU SECTION -->
+    <section class="w-full flex flex-col justify-center items-center p-80">
+        <h1 class="font-serif font-semibold text-xl md:text-3xl h-fit">On the menu</h1>
+        <div class="flex justify-center bg-[url('./static/PixelArt/boardAndShelves.png')] bg-contain bg-no-repeat bg-center relative"
+            <!-- Added a specific container for the menu items -->
+            <div class="flex justify-center w-[400px] h-[350px] md:w-[554px] md:h-[432px]">
+
+                <div
+                    class="flex flex-col gap-3 md:gap-6 h-[220px] w-[260px] md:w-[354px] md:h-[270px] flex-wrap pt-20 ">
+                    <div class="flex gap-2 items-center">
+                        <img src="./static/PixelArt/tinyFlower.png" class="w-4 md:w-6" alt="">
+                        <a href=""
+                            class="font-serif font-semibold text-white md:text-xl hover:text-gray-300">playlists</a>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                        <img src="./static/PixelArt/tinyFlower.png" class="w-4 md:w-6" alt="">
+                        <a href="" class="font-serif font-semibold text-white md:text-xl hover:text-gray-300">games</a>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                        <img src="./static/PixelArt/tinyFlower.png" class="w-4 md:w-6" alt="">
+                        <a href=""
+                            class="font-serif font-semibold text-white md:text-xl hover:text-gray-300">recipes</a>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                        <img src="./static/PixelArt/tinyFlower.png" class="w-4 md:w-6" alt="">
+                        <a href="" class="font-serif font-semibold text-white md:text-xl hover:text-gray-300">blogs</a>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                        <img src="./static/PixelArt/tinyFlower.png" class="w-4 md:w-6" alt="">
+                        <a href="./projects.html"
+                            class="font-serif font-semibold text-white md:text-xl hover:text-gray-300">projects</a>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                        <img src="./static/PixelArt/tinyFlower.png" class="w-4 md:w-6" alt="">
+                        <a href=""
+                            class="font-serif font-semibold text-white md:text-xl hover:text-gray-300">gallery</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    </div>
+</body>
+
+</html>
