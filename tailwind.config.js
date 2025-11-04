@@ -8,14 +8,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'green': '#CDD8B7',
+        'green-background': '#CDD8B7',
         'beige': '#FFFBDD',
-        'off-white': '#FFFCE4',
+        'off-white': '#FFFDEF',
         'white': '#FFFDEF',
-        'yellow': '#FFE06E',
+        'yellow': '#FCE8A9',
+        'yellow-200': '#FCDE6E',
         'orange': '#F7CFAF',
+        'orange-200': '#DB9369',
         'brown': "#DDBEA9",
         'dark-brown': '#6F4E37',
+        'green': '#E5EBBD',
         'green-200': '#ADBA84',
         'blue-200': '#79C0CF',
         'blue': '#ACE3EB',
