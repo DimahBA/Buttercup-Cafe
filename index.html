@@ -10,10 +10,77 @@
     <link href="./output.css" rel="stylesheet">
 </head>
 
+<style>
+    .cursor-hidden {
+        visibility: hidden;
+    }
+
+    .cursor-visible {
+        visibility: visible;
+    }
+
+    @keyframes cursor-blink {
+
+        0%,
+        50% {
+            opacity: 1;
+        }
+
+        51%,
+        100% {
+            opacity: 0;
+        }
+    }
+
+    .cursor-blink {
+        animation: cursor-blink 1s infinite;
+    }
+</style>
+
 <body class="bg-beige">
     <div class="bg-green-background min-h-screen flex items-center justify-center flex-col">
-        <img src="./static/PixelArt/cafe_sprite.png" alt="Cafe Sprite" class="max-w-3xl w-full">
+
+        <!-- cafe -->
+        <img src="./static/PixelArt/cafe_sprite.png" alt="Cafe Sprite" class="max-w-[34%]">
+
+        <!-- Chibi stuff (circle, bubble, box) -->
+        <div class="relative bottom-0 flex items-center gap-10 -translate-y-14">
+            <!-- Chat bubble and chibi circle stacked vertically -->
+            <div class="flex flex-col items-center">
+                <!-- Chat bubble -->
+                <!-- Chat bubble -->
+                <div class="relative -translate-x-24">
+                    <div class="animate-pop-then-float-infinite" id="chat-bubble"
+                        style="opacity: 0; transform: scale(0); animation-delay: 1.0s; animation-fill-mode: both;">
+                        <img src="./static/chat-bubble.png" class="w-52">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-xl md:text-2xl font-serif transform -translate-y-2">HI, I'M DIMAH</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chibi circle -->
+                <div class="bg-off-white-200 flex items-center justify-center w-52 md:w-52 rounded-full p-7 relative animate-pop opacity-0 scale-0"
+                    id="chibi-circle" style="animation-delay: 0.5s; animation-fill-mode: both;">
+                    <img src="./static/PixelArt/myChibi-cropped.png" alt="Pixel art chibi" class="">
+                    <!-- Sunflower positioned relative to chibi circle -->
+                    <img src="./static/PixelArt/sunflower.png"
+                        class="absolute w-14 bottom-0 left-0 translate-x-2 translate-y-2" alt="">
+                </div>
+            </div>
+
+            <!-- Text box aligned horizontally -->
+            <div class="bg-off-white rounded-lg p-4 w-[30rem] h-[8rem] p-7 px-9 top-10 relative animate-quick-pop opacity-0"
+                id="chat-box" style="animation-delay: 2.0s; animation-fill-mode: both;">
+                <p class="text-lg">
+                    <span id="typewriter-text"></span>
+                    <span id="cursor" class="cursor-hidden cursor-blink">|</span>
+                </p>
+            </div>
+        </div>
     </div>
+
+
 
     <div
         class="bg-[url(./static/background.svg)] md:bg-[length:512px_512px] bg-[length:400px_400px] bg-repeat md:h-32 h-20 w-full">
@@ -36,7 +103,8 @@
         </div>
 
         <!-- Pattern background positioned behind the content -->
-        <div class="bg-pattern animate-pattern-diagonal w-full h-72 top-[85px] absolute  left-0"></div>
+
+        <!-- <div class="bg-pattern animate-pattern-diagonal w-full h-72 top-[85px] absolute  left-0"></div> -->
 
         <!-- Text section -->
         <div class="w-full flex justify-center py-8">
@@ -57,7 +125,7 @@
 
     </div>
 
-        <div class="">
+    <div class="">
         <h1 class="font-serif text-4xl mb-12 text-center">My Projects !</h1>
 
         <!-- Cards Container - Grid layout first -->
@@ -159,7 +227,7 @@
         </div>
     </div>
 
-<!--    
+    <!--    
     <section class="w-full flex flex-col justify-center items-center p-10">
         <h1 class="font-serif font-semibold text-xl md:text-3xl h-fit">On the menu</h1>
         <div class="flex justify-center bg-[url('./static/PixelArt/boardAndShelves.png')] bg-contain bg-no-repeat bg-center relative"
@@ -206,6 +274,7 @@
 
 
     </div>
+    <script src="typewriter.js"></script>
 </body>
 
 </html>
