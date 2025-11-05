@@ -46,9 +46,9 @@
             <div class="flex flex-col items-center">
                 <!-- Chat bubble -->
                 <!-- Chat bubble -->
+                <!-- Chat bubble -->
                 <div class="relative -translate-x-24">
-                    <div class="animate-pop-then-float-infinite" id="chat-bubble"
-                        style="opacity: 0; transform: scale(0); animation-delay: 1.0s; animation-fill-mode: both;">
+                    <div id="chat-bubble">
                         <img src="./static/chat-bubble.png" class="w-52">
                         <div class="absolute inset-0 flex items-center justify-center">
                             <span class="text-xl md:text-2xl font-serif transform -translate-y-2">HI, I'M DIMAH</span>
@@ -67,12 +67,15 @@
             </div>
 
             <!-- Text box aligned horizontally -->
-            <div class="bg-off-white rounded-lg p-4 w-[30rem] h-[8rem] p-7 px-9 top-10 relative animate-quick-pop opacity-0"
+            <div class="bg-off-white rounded-lg p-4 w-[30rem] h-[8rem] p-7 px-9 top-10 relative animate-quick-pop opacity-0 border-2 border-black"
                 id="chat-box" style="animation-delay: 2.0s; animation-fill-mode: both;">
-                <p class="text-lg">
+                <p class="text-lg font-serif">
                     <span id="typewriter-text"></span>
                     <span id="cursor" class="cursor-hidden cursor-blink">|</span>
                 </p>
+                <img src="./static/PixelArt/tinyFlower.png"
+                    class="absolute w-8 top-0 right-0 translate-x-4 -translate-y-2" alt="">
+
             </div>
         </div>
     </div>
@@ -84,7 +87,7 @@
 
     </div>
     <!-- INTRO SECTION -->
-<!--     <section class="w-full flex flex-col items-center justify-center relative pb-10">
+    <!--     <section class="w-full flex flex-col items-center justify-center relative pb-10">
         <div class="flex items-center flex-col w-full pt-[70px] relative z-10">
             <div class="relative -translate-x-20">
                 <img src="./static/chat-bubble.png" class="w-64">
