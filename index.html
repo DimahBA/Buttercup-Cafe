@@ -55,7 +55,7 @@
                 </div>
 
                 <!-- Chibi circle -->
-                <div id="main-chibi-container"  class="bg-off-white-200 flex items-center justify-center w-52 md:w-52 rounded-full p-7 relative animate-pop opacity-0 scale-0"
+                <div class="bg-off-white-200 flex items-center justify-center w-52 md:w-52 rounded-full p-7 relative animate-pop opacity-0 scale-0"
                     id="chibi-circle" style="animation-delay: 0.5s; animation-fill-mode: both;">
                     <img src="./static/PixelArt/myChibi-cropped.png" alt="Pixel art chibi" class="">
                     <!-- Sunflower positioned relative to chibi circle -->
@@ -168,7 +168,12 @@
                             </div>
                         </div>
                         <!-- Chibi circle -->
-                        <div id="chibi-target" class="relative flex justify-center w-52 h-52"> </div>
+                        <div class="bg-orange-200 flex justify-center w-52 md:w-52 rounded-full p-7 relative">
+                            <img src="./static/PixelArt/myChibi-cropped.png" alt="Pixel art chibi" class="">
+                            <!-- Sunflower positioned relative to chibi circle -->
+                            <img src="./static/PixelArt/sunflower.png"
+                                class="absolute w-14 bottom-0 right-0 translate-x-2 translate-y-2" alt="">
+                        </div>
                     </div>
                     <!-- Dialogue Box aligned horizontally (ALWAYS visible, just hidden with opacity) -->
                     <div id="blackboard-dialogue"
