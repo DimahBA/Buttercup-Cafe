@@ -1,184 +1,182 @@
-const textChunks = [
-    {
-        text: "I'm an IT student who likes cute things, music, and coffee!",
-        html: "I'm an IT student who likes cute things, music, and <span class='font-bold'>coffee!</span>"
-    },
-    {
-        text: "This website is my attempt to recreate the peacefulness that coffee gives me in the digital world ...",
-        html: "This website is my attempt to recreate the peacefulness that coffee gives me in the digital world ..."
-    },
-    {
-        text: "Consider it a place to take a breather .. from that constant motion of the internet.",
-        html: "Consider it a place to take a breather .. from that constant motion of the internet."
-    },
-    {
-        text: "Enjoy your stay !",
-        html: "Enjoy your stay !"
-    },
-];
-
-let currentChunkIndex = 0;
-let currentCharIndex = 0;
-let isDeleting = false;
-let isWaiting = false;
-
-const typewriterElement = document.getElementById('typewriter-text');
-const baseTypingSpeed = 20;
-const deletingSpeed = 10;
-const waitTime = 3000;
-const deleteWaitTime = 2000;
-
-// Words that should have pauses after them (like natural speech)
-const pauseWords = [',','.', '!', '?', 'cute things', 'music', 'coffee', 'breather', 'constant', 'peacefulness', 'student', 'music', 'website', 'me'];
-const pauseDuration = 250; // Extra pause after certain words
-
-function getTypingSpeed(currentChar, previousChars) {
-    // Check if we just completed a pause word
-    const lastWord = previousChars.split(' ').pop();
-    const currentText = previousChars + currentChar;
-    
-    // Pause after punctuation
-    if ([',', '.', '!', '?'].includes(currentChar)) {
-        return baseTypingSpeed + 300;
+// Reusable typewriter effect engine
+class TypewriterEngine {
+    constructor(config = {}) {
+        this.baseSpeed = config.baseSpeed || 20;
+        this.deletingSpeed = config.deletingSpeed || 10;
+        this.pauseWords = config.pauseWords || [',', '.', '!', '?'];
+        this.pauseDuration = config.pauseDuration || 250;
+        this.timeout = null;
     }
-    
-    // Pause after specific words
-    if (pauseWords.includes(lastWord) && currentChar === ' ') {
-        return baseTypingSpeed + pauseDuration;
-    }
-    
-    // Random slight variation to make it feel more natural
-    return baseTypingSpeed + Math.random() * 20;
-}
 
-function typeWriter() {
-    const currentChunk = textChunks[currentChunkIndex];
-    const plainText = currentChunk.text;
-    
-    if (isWaiting) {
-        setTimeout(() => {
-            isWaiting = false;
-            isDeleting = true;
-            typeWriter();
-        }, waitTime);
-        return;
-    }
-    
-    if (!isDeleting) {
-        // Typing
-        if (currentCharIndex < plainText.length) {
-            const displayText = plainText.substring(0, currentCharIndex + 1);
-            const currentChar = plainText[currentCharIndex];
-            const previousChars = plainText.substring(0, currentCharIndex);
-            
-            // Replace "coffee" with bold version if it's complete
-            if (displayText.includes('coffee') && displayText.indexOf('coffee') + 6 <= displayText.length) {
-                typewriterElement.innerHTML = displayText.replace('coffee', '<span class="font-bold">coffee</span>');
-            } else {
-                typewriterElement.textContent = displayText;
-            }
-            
-            currentCharIndex++;
-            const nextSpeed = getTypingSpeed(currentChar, previousChars);
-            setTimeout(typeWriter, nextSpeed);
-        } else {
-            // Show final HTML version
-            typewriterElement.innerHTML = currentChunk.html;
-            
-            // Check if this is the last chunk
-            if (currentChunkIndex >= textChunks.length - 1) {
-                // This is the last sentence - keep the cursor visible and stop
-                return; // Exit the function, animation complete
-            }
-            
-            // Not the last chunk, so wait and then delete
-            isWaiting = true;
-            setTimeout(() => {
-                isWaiting = false;
-                isDeleting = true;
-                typeWriter();
-            }, deleteWaitTime);
-        }
-    } else {
-        // Deleting
-        if (currentCharIndex > 0) {
-            typewriterElement.textContent = plainText.substring(0, currentCharIndex - 1);
-            currentCharIndex--;
-            setTimeout(typeWriter, deletingSpeed);
-        } else {
-            // Finished deleting, move to next chunk
-            isDeleting = false;
-            currentChunkIndex++;
-            setTimeout(typeWriter, baseTypingSpeed);
-        }
-    }
-}
-
-// Chat bubble pop and float animation function
-function animateChatBubble() {
-    const chatBubble = document.getElementById('chat-bubble');
-    if (!chatBubble) return;
-    
-    // Set initial state
-    chatBubble.style.opacity = '0';
-    chatBubble.style.transform = 'scale(0) translateY(0px)';
-    chatBubble.style.transition = 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
-    
-    // Start pop animation after delay
-    setTimeout(() => {
-        // Pop in!
-        chatBubble.style.opacity = '1';
-        chatBubble.style.transform = 'scale(1.05) translateY(0px)';
+    /**
+     * Types text with natural pauses
+     * @param {string} text - The text to type
+     * @param {HTMLElement} element - The element to type into
+     * @param {HTMLElement} cursor - The cursor element
+     * @param {Object} options - Additional options
+     */
+    type(text, element, cursor, options = {}) {
+        const speed = options.speed || this.baseSpeed;
         
-        // Settle to normal size
-        setTimeout(() => {
-            chatBubble.style.transform = 'scale(1) translateY(0px)';
-            
-            // Start floating after pop completes
-            setTimeout(() => {
-                startFloating(chatBubble);
-            }, 200);
-        }, 300);
-    }, 1000);
-}
-
-// Infinite floating animation
-function startFloating(element) {
-    // Remove transition for smooth floating
-    element.style.transition = 'transform 1s ease-in-out';
-    
-    let isFloatingUp = true;
-    
-    function float() {
-        if (isFloatingUp) {
-            element.style.transform = 'scale(1) translateY(-8px)';
-        } else {
-            element.style.transform = 'scale(1) translateY(0px)';
+        // Clear any existing timeout
+        if (this.timeout) {
+            clearTimeout(this.timeout);
         }
-        isFloatingUp = !isFloatingUp;
         
-        // Continue floating every 1.5 seconds
-        setTimeout(float, 1000);
-    }
-    
-    // Start the floating cycle
-    float();
-}
-
-// Start everything when DOM loads
-document.addEventListener('DOMContentLoaded', function() {
-    // Start chat bubble animation
-    animateChatBubble();
-    
-    // Show cursor before typing starts
-    setTimeout(() => {
-        const cursor = document.getElementById('cursor');
+        // Reset element
+        element.textContent = '';
+        
+        // Show cursor
         if (cursor) {
             cursor.classList.remove('cursor-hidden');
-            cursor.classList.add('cursor-visible');
+            cursor.classList.add('cursor-blink');
         }
-    }, 2000);
-    
-    // Start typing
-    setTimeout(typeWriter, 3500);
-});
+        
+        let i = 0;
+        
+        const typeChar = () => {
+            if (i < text.length) {
+                element.textContent += text.charAt(i);
+                
+                // Calculate next speed with natural pauses
+                const currentChar = text[i];
+                const nextSpeed = this.getTypingSpeed(currentChar, text.substring(0, i));
+                
+                i++;
+                this.timeout = setTimeout(typeChar, nextSpeed);
+            } else {
+                // Typing complete
+                if (options.onComplete) {
+                    options.onComplete();
+                }
+                
+                // Hide cursor after completion
+                if (cursor && !options.keepCursor) {
+                    setTimeout(() => {
+                        cursor.classList.add('cursor-hidden');
+                    }, 1000);
+                }
+            }
+        };
+        
+        typeChar();
+    }
+
+    /**
+     * Types HTML content (preserves formatting)
+     * @param {string} html - HTML string to render
+     * @param {HTMLElement} element - The element to type into
+     * @param {HTMLElement} cursor - The cursor element
+     * @param {Object} options - Additional options
+     */
+    typeHTML(html, element, cursor, options = {}) {
+        // Extract plain text for typing simulation
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = html;
+        const plainText = tempDiv.textContent || tempDiv.innerText;
+        
+        const speed = options.speed || this.baseSpeed;
+        
+        if (this.timeout) {
+            clearTimeout(this.timeout);
+        }
+        
+        element.textContent = '';
+        
+        if (cursor) {
+            cursor.classList.remove('cursor-hidden');
+            cursor.classList.add('cursor-blink');
+        }
+        
+        let i = 0;
+        
+        const typeChar = () => {
+            if (i < plainText.length) {
+                element.textContent = plainText.substring(0, i + 1);
+                
+                const currentChar = plainText[i];
+                const nextSpeed = this.getTypingSpeed(currentChar, plainText.substring(0, i));
+                
+                i++;
+                this.timeout = setTimeout(typeChar, nextSpeed);
+            } else {
+                // Show final HTML version
+                element.innerHTML = html;
+                
+                if (options.onComplete) {
+                    options.onComplete();
+                }
+                
+                if (cursor && !options.keepCursor) {
+                    setTimeout(() => {
+                        cursor.classList.add('cursor-hidden');
+                    }, 1000);
+                }
+            }
+        };
+        
+        typeChar();
+    }
+
+    /**
+     * Deletes text with animation
+     * @param {HTMLElement} element - The element containing text
+     * @param {Function} onComplete - Callback when deletion completes
+     */
+    delete(element, onComplete) {
+        if (this.timeout) {
+            clearTimeout(this.timeout);
+        }
+        
+        const text = element.textContent;
+        let i = text.length;
+        
+        const deleteChar = () => {
+            if (i > 0) {
+                element.textContent = text.substring(0, i - 1);
+                i--;
+                this.timeout = setTimeout(deleteChar, this.deletingSpeed);
+            } else {
+                if (onComplete) {
+                    onComplete();
+                }
+            }
+        };
+        
+        deleteChar();
+    }
+
+    /**
+     * Calculate typing speed with natural pauses
+     */
+    getTypingSpeed(currentChar, previousChars) {
+        // Pause after punctuation
+        if ([',', '.', '!', '?'].includes(currentChar)) {
+            return this.baseSpeed + 300;
+        }
+        
+        // Pause after specific words
+        const lastWord = previousChars.split(' ').pop();
+        if (this.pauseWords.includes(lastWord) && currentChar === ' ') {
+            return this.baseSpeed + this.pauseDuration;
+        }
+        
+        // Random slight variation for natural feel
+        return this.baseSpeed + Math.random() * 20;
+    }
+
+    /**
+     * Stop any ongoing typing animation
+     */
+    stop() {
+        if (this.timeout) {
+            clearTimeout(this.timeout);
+            this.timeout = null;
+        }
+    }
+}
+
+// Export for use in other files
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = TypewriterEngine;
+}

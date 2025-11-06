@@ -45,8 +45,6 @@
             <!-- Chat bubble and chibi circle stacked vertically -->
             <div class="flex flex-col items-center">
                 <!-- Chat bubble -->
-                <!-- Chat bubble -->
-                <!-- Chat bubble -->
                 <div class="relative -translate-x-24">
                     <div id="chat-bubble">
                         <img src="./static/chat-bubble.png" class="w-52">
@@ -75,50 +73,136 @@
                 </p>
                 <img src="./static/PixelArt/tinyFlower.png"
                     class="absolute w-8 top-0 right-0 translate-x-4 -translate-y-2" alt="">
-
             </div>
         </div>
     </div>
 
-
-
     <div
         class="bg-[url(./static/background.svg)] md:bg-[length:512px_512px] bg-[length:400px_400px] bg-repeat md:h-32 h-20 w-full">
-
     </div>
-    <!-- INTRO SECTION -->
-    <!--     <section class="w-full flex flex-col items-center justify-center relative pb-10">
-        <div class="flex items-center flex-col w-full pt-[70px] relative z-10">
-            <div class="relative -translate-x-20">
-                <img src="./static/chat-bubble.png" class="w-64">
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <span class="text-2xl md:text-3xl font-serif transform -translate-y-2">HI, I'M DIMAH</span>
+
+
+
+
+    <!-- --------------------------------------------------------------------------------------------------------------- -->
+    <!-- Blackboard Section -->
+    <!-- --------------------------------------------------------------------------------------------------------------- -->
+
+
+
+
+    <div class="w-full flex justify-center py-20">
+        <div class="relative w-full max-w-6xl px-4">
+            <div class="flex flex-col  gap-8">
+
+                <!-- Blackboard with shadow  -->
+                <div class="relative ">
+
+                    <!-- Brown border/frame -->
+                    <div class="bg-brown p-6 shadow-2xl">
+                        <!-- Blackboard - -->
+                        <div class="bg-[#4F5A5D] w-[700px] h-[360px] p-12 relative">
+
+                            <!-- Grid of main questions (initial state) -->
+                            <div id="blackboard-questions"
+                                class="grid grid-cols-2 gap-x-16 gap-y-12 h-full absolute inset-0 p-12 transition-opacity duration-300">
+
+                                <!-- Education -->
+                                <button onclick="blackboardQA.selectQuestion('education')"
+                                    class="flex items-center gap-3 hover:scale-105 transition-transform duration-200 cursor-pointer text-left group">
+                                    <img src="./static/PixelArt/tinyFlower.png"
+                                        class="w-6 group-hover:scale-110 transition-transform" alt="">
+                                    <span
+                                        class="text-white font-serif text-2xl group-hover:text-gray-200">Education</span>
+                                </button>
+
+                                <!-- Projects -->
+                                <button onclick="blackboardQA.selectQuestion('projects')"
+                                    class="flex items-center gap-3 hover:scale-105 transition-transform duration-200 cursor-pointer text-left group">
+                                    <img src="./static/PixelArt/tinyFlower.png"
+                                        class="w-6 group-hover:scale-110 transition-transform" alt="">
+                                    <span
+                                        class="text-white font-serif text-2xl group-hover:text-gray-200">Projects</span>
+                                </button>
+
+                                <!-- Music -->
+                                <button onclick="blackboardQA.selectQuestion('music')"
+                                    class="flex items-center gap-3 hover:scale-105 transition-transform duration-200 cursor-pointer text-left group">
+                                    <img src="./static/PixelArt/tinyFlower.png"
+                                        class="w-6 group-hover:scale-110 transition-transform" alt="">
+                                    <span class="text-white font-serif text-2xl group-hover:text-gray-200">Music</span>
+                                </button>
+
+                                <!-- Cats or dogs? -->
+                                <button onclick="blackboardQA.selectQuestion('cats-dogs')"
+                                    class="flex items-center gap-3 hover:scale-105 transition-transform duration-200 cursor-pointer text-left group">
+                                    <img src="./static/PixelArt/tinyFlower.png"
+                                        class="w-6 group-hover:scale-110 transition-transform" alt="">
+                                    <span class="text-white font-serif text-2xl group-hover:text-gray-200">Cats or
+                                        dogs?</span>
+                                </button>
+
+                            </div>
+
+                            <!-- Follow-up questions container (hidden by default) - ABSOLUTE POSITIONED -->
+                            <div id="blackboard-followups"
+                                class="hidden grid grid-cols-2 gap-x-16 gap-y-12 h-full absolute inset-0 p-12 transition-opacity duration-300">
+                                <!-- Content will be dynamically inserted by JavaScript -->
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="bg-orange flex items-center justify-center w-52 md:w-60 rounded-full p-7">
-                <img src="./static/PixelArt/myChibi-cropped.png" alt="Pixel art chibi" class="">
-            </div>
-            <img src="./static/PixelArt/sunflower.png" class="absolute w-12 translate-y-64 translate-x-24" alt="">
-        </div>
 
-        <div class="w-full flex justify-center py-8">
-            <div class="w-[26em]">
-                <p class="font-serif text-center text-xl">
-                    I'm an IT student who likes cute things, music and coffee. This website is my attempt to recreate
-                    the
-                    peacefulness that coffee gives me in the digital world, a place to take a breather from the constant
-                    motion of the internet
-                </p>
+                <!-- Chibi and Chat/Dialogue -->
+                <div class="relative bottom-0 flex items-center gap-10 -translate-y-14">
+                    <!-- Chat bubble and chibi circle stacked vertically -->
+                    <div class="flex flex-col items-center">
+                        <!-- Chat bubble container (ALWAYS takes up space) -->
+                        <div class="relative translate-x-24 h-32 flex items-end justify-center mb-2">
+                            <div id="blackboard-chat-bubble" class="opacity-0 transition-opacity duration-300">
+                                <img src="./static/chat-bubble-mirrored.png" class="w-64">
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <span class="text-xl md:text-2xl font-serif transform -translate-y-2">ASK ME
+                                        ANYTHING</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Chibi circle -->
+                        <div
+                            class="bg-off-white-200 flex justify-center w-52 md:w-52 rounded-full p-7 relative">
+                            <img src="./static/PixelArt/myChibi-cropped.png" alt="Pixel art chibi" class="">
+                            <!-- Sunflower positioned relative to chibi circle -->
+                            <img src="./static/PixelArt/sunflower.png"
+                                class="absolute w-14 bottom-0 right-0 translate-x-2 translate-y-2" alt="">
+                        </div>
+                    </div>
+                    <!-- Dialogue Box aligned horizontally (ALWAYS visible, just hidden with opacity) -->
+                    <div id="blackboard-dialogue"
+                        class="bg-off-white rounded-lg w-[38rem] min-h-[8rem] max-h-[8rem] overflow-y-auto p-7 px-9 top-10 relative opacity-0 border-2 border-black transition-opacity duration-400">
+                        <p class="text-lg font-serif">
+                            <span id="blackboard-answer"></span>
+                            <span id="blackboard-cursor" class="cursor-hidden cursor-blink">|</span>
+                        </p>
+                        <img src="./static/PixelArt/tinyFlower.png"
+                            class="absolute w-8 top-0 right-0 translate-x-4 -translate-y-2" alt="">
+                    </div>
+                </div>
+
             </div>
         </div>
-    </section>
-     -->
-
+    </div>
 
     <div
         class="bg-[url(./static/background.svg)] md:bg-[length:512px_512px] bg-[length:400px_400px] bg-repeat md:h-32 h-20 w-full">
-
     </div>
+
+
+
+    <!-- --------------------------------------------------------------------------------------------------------------- -->
+    <!-- Projects Section -->
+    <!-- --------------------------------------------------------------------------------------------------------------- -->
+
 
     <div class="">
         <h1 class="font-serif text-4xl mb-12 text-center">My Projects !</h1>
@@ -222,54 +306,16 @@
         </div>
     </div>
 
-    <!--    
-    <section class="w-full flex flex-col justify-center items-center p-10">
-        <h1 class="font-serif font-semibold text-xl md:text-3xl h-fit">On the menu</h1>
-        <div class="flex justify-center bg-[url('./static/PixelArt/boardAndShelves.png')] bg-contain bg-no-repeat bg-center relative"
-            <Added a specific container for the menu items 
-            <div class="flex justify-center w-[400px] h-[350px] md:w-[554px] md:h-[432px]">
 
-                <div
-                    class="flex flex-col gap-3 md:gap-6 h-[220px] w-[260px] md:w-[354px] md:h-[270px] flex-wrap pt-20 ">
-                    <div class="flex gap-2 items-center">
-                        <img src="./static/PixelArt/tinyFlower.png" class="w-4 md:w-6" alt="">
-                        <a href=""
-                            class="font-serif font-semibold text-white md:text-xl hover:text-gray-300">playlists</a>
-                    </div>
-                    <div class="flex gap-2 items-center">
-                        <img src="./static/PixelArt/tinyFlower.png" class="w-4 md:w-6" alt="">
-                        <a href="" class="font-serif font-semibold text-white md:text-xl hover:text-gray-300">games</a>
-                    </div>
-                    <div class="flex gap-2 items-center">
-                        <img src="./static/PixelArt/tinyFlower.png" class="w-4 md:w-6" alt="">
-                        <a href=""
-                            class="font-serif font-semibold text-white md:text-xl hover:text-gray-300">recipes</a>
-                    </div>
-                    <div class="flex gap-2 items-center">
-                        <img src="./static/PixelArt/tinyFlower.png" class="w-4 md:w-6" alt="">
-                        <a href="" class="font-serif font-semibold text-white md:text-xl hover:text-gray-300">blogs</a>
-                    </div>
-                    <div class="flex gap-2 items-center">
-                        <img src="./static/PixelArt/tinyFlower.png" class="w-4 md:w-6" alt="">
-                        <a href="./projects.html"
-                            class="font-serif font-semibold text-white md:text-xl hover:text-gray-300">projects</a>
-                    </div>
-                    <div class="flex gap-2 items-center">
-                        <img src="./static/PixelArt/tinyFlower.png" class="w-4 md:w-6" alt="">
-                        <a href=""
-                            class="font-serif font-semibold text-white md:text-xl hover:text-gray-300">gallery</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> 
-    
-    -->
-
-
-
-    </div>
+    <!-- Load scripts in correct order -->
     <script src="typewriter.js"></script>
+    <script src="content-data.js"></script>
+    <script src="intro-typewriter.js"></script>
+    <script src="blackboard.js"></script>
+    <script src="animate_chatbubble.js"></script>
+
+    <script src="main.js"></script>
+
 </body>
 
 </html>
