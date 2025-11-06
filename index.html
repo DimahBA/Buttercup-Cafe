@@ -38,18 +38,18 @@
     <div class="bg-green-background min-h-screen flex items-center justify-center flex-col">
 
         <!-- cafe -->
-        <img src="./static/PixelArt/cafe_sprite.png" alt="Cafe Sprite" class="max-w-[34%]">
+        <img src="./static/PixelArt/cafe_sprite.png" alt="Cafe Sprite" class="max-w-[60%] sm:max-w-[50%] md:max-w-[34%]">
 
         <!-- Chibi stuff (circle, bubble, box) -->
-        <div class="relative bottom-0 flex items-center gap-10 -translate-y-14">
+        <div class="hidden md:flex relative bottom-0 items-center gap-10">
             <!-- Chat bubble and chibi circle stacked vertically -->
             <div class="flex flex-col items-center">
                 <!-- Chat bubble -->
-                <div class="relative -translate-x-24">
+                <div class="relative">
                     <div id="chat-bubble">
                         <img src="./static/chat-bubble.png" class="w-52">
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="text-xl md:text-2xl font-serif transform -translate-y-2">HI, I'M DIMAH</span>
+                            <span class="text-lg lg:text-xl xl:text-2xl font-serif transform -translate-y-2">HI, I'M DIMAH</span>
                         </div>
                     </div>
                 </div>
@@ -75,6 +75,42 @@
                     class="absolute w-8 top-0 right-0 translate-x-4 -translate-y-2" alt="">
             </div>
         </div>
+
+        <!-- Mobile version of chibi section -->
+        <div class="md:hidden flex flex-col items-center gap-4 px-4 w-full max-w-[90%]">
+            <!-- Chat bubble and chibi circle stacked vertically -->
+            <div class="flex flex-col items-center">
+                <!-- Chat bubble -->
+                <div class="relative">
+                    <div id="chat-bubble-mobile">
+                        <img src="./static/chat-bubble.png" class="w-40">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-base font-serif transform -translate-y-2">HI, I'M DIMAH</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chibi circle -->
+                <div class="bg-off-white-200 flex items-center justify-center w-40 rounded-full p-5 relative animate-pop opacity-0 scale-0"
+                    id="chibi-circle-mobile" style="animation-delay: 0.5s; animation-fill-mode: both;">
+                    <img src="./static/PixelArt/myChibi-cropped.png" alt="Pixel art chibi" class="">
+                    <!-- Sunflower positioned relative to chibi circle -->
+                    <img src="./static/PixelArt/sunflower.png"
+                        class="absolute w-10 bottom-0 left-0 translate-x-2 translate-y-2" alt="">
+                </div>
+            </div>
+
+            <!-- Text box -->
+            <div class="bg-off-white rounded-lg w-full min-h-[8rem] p-4 relative animate-quick-pop opacity-0 border-2 border-black"
+                id="chat-box-mobile" style="animation-delay: 2.0s; animation-fill-mode: both;">
+                <p class="text-base font-serif">
+                    <span id="typewriter-text-mobile"></span>
+                    <span id="cursor-mobile" class="cursor-hidden cursor-blink">|</span>
+                </p>
+                <img src="./static/PixelArt/tinyFlower.png"
+                    class="absolute w-6 top-0 right-0 translate-x-3 -translate-y-2" alt="">
+            </div>
+        </div>
     </div>
 
     <div
@@ -89,15 +125,15 @@
     <!-- --------------------------------------------------------------------------------------------------------------- -->
 
 
-    <div class="mt-16 ">
-        <h1 class="font-serif text-4xl text-center mb-10">Q&A Board !</h1>
+    <div class="mt-8 md:mt-16">
+        <h1 class="font-serif text-2xl md:text-4xl text-center mb-6 md:mb-10">Q&A Board !</h1>
 
-    <div class="w-full flex justify-center ">
-        <div class="relative w-full max-w-[75%] px-4">
-            <div class="flex flex-col  gap-8">
+    <div class="w-full flex justify-center px-4">
+        <div class="relative w-full max-w-[95%] md:max-w-[75%]">
+            <div class="flex flex-col gap-8">
 
-                <!-- Blackboard with shadow  -->
-                <div class="relative flex justify-center">
+                                <!-- Blackboard with shadow  -->
+                                <div class="relative flex justify-center">
                     <div class="bg-brown-200 p-6 shadow-2xl w-fit">
                         <!-- Blackboard - -->
                         <div class="bg-[#4F5A5D] w-[700px] h-[360px] p-12 relative">
@@ -154,36 +190,36 @@
                 </div>
 
                 <!-- Chibi and Chat/Dialogue -->
-                <div class="relative bottom-0 flex items-center gap-10 -translate-y-[10rem]">
+                <div class="relative bottom-0 flex flex-col md:flex-row items-center gap-4 md:gap-10 -translate-y-12 md:-translate-y-[10rem]">
                     <!-- Chat bubble and chibi circle stacked vertically -->
                     <div class="flex flex-col items-center">
                         <!-- Chat bubble container (ALWAYS takes up space) -->
-                        <div class="relative translate-x-24 h-32 flex items-end justify-center mb-2">
+                        <div class="relative md:translate-x-24 h-24 md:h-32 flex items-end justify-center mb-2">
                             <div id="blackboard-chat-bubble" class="opacity-0 transition-opacity duration-300">
-                                <img src="./static/chat-bubble-mirrored.png" class="w-64">
+                                <img src="./static/chat-bubble-mirrored.png" class="w-48 md:w-56 lg:w-64">
                                 <div class="absolute inset-0 flex items-center justify-center">
-                                    <span class="text-xl md:text-2xl font-serif transform -translate-y-2">ASK ME
+                                    <span class="text-sm md:text-lg lg:text-xl xl:text-2xl font-serif transform -translate-y-2">ASK ME
                                         ANYTHING</span>
                                 </div>
                             </div>
                         </div>
                         <!-- Chibi circle -->
-                        <div class="bg-orange-200 flex justify-center w-52 md:w-52 rounded-full p-7 relative">
+                        <div class="bg-orange-200 flex justify-center w-40 md:w-52 rounded-full p-5 md:p-7 relative">
                             <img src="./static/PixelArt/myChibi-cropped.png" alt="Pixel art chibi" class="">
                             <!-- Sunflower positioned relative to chibi circle -->
                             <img src="./static/PixelArt/sunflower.png"
-                                class="absolute w-14 bottom-0 right-0 translate-x-2 translate-y-2" alt="">
+                                class="absolute w-10 md:w-14 bottom-0 right-0 translate-x-2 translate-y-2" alt="">
                         </div>
                     </div>
                     <!-- Dialogue Box aligned horizontally (ALWAYS visible, just hidden with opacity) -->
                     <div id="blackboard-dialogue"
-                        class="bg-off-white rounded-lg w-[54rem] min-h-[10rem] max-h-[8rem] overflow-visible p-7 px-9 top-[4.5rem] relative opacity-0 border-2 border-black transition-opacity duration-400">
-                        <p class="text-lg font-serif">
+                        class="bg-off-white rounded-lg w-full md:w-[54rem] min-h-[10rem] overflow-visible p-4 md:p-7 md:px-9 md:top-[4.5rem] relative opacity-0 border-2 border-black transition-opacity duration-400">
+                        <p class="text-base md:text-lg font-serif">
                             <span id="blackboard-answer"></span>
                             <span id="blackboard-cursor" class="cursor-hidden cursor-blink">|</span>
                         </p>
                         <img src="./static/PixelArt/tinyFlower.png"
-                            class="absolute w-8 top-0 right-0 translate-x-4 -translate-y-2" alt="">
+                            class="absolute w-6 md:w-8 top-0 right-0 translate-x-3 md:translate-x-4 -translate-y-2" alt="">
                     </div>
                 </div>
 
@@ -202,17 +238,17 @@
     <!-- --------------------------------------------------------------------------------------------------------------- -->
 
 
-    <div class="mt-20">
-        <h1 class="font-serif text-4xl mb-12 text-center">My Projects !</h1>
+    <div class="mt-12 md:mt-20 px-4">
+        <h1 class="font-serif text-2xl md:text-4xl mb-8 md:mb-12 text-center">My Projects !</h1>
 
         <!-- Cards Container - Grid layout first -->
-        <div class="grid grid-cols-2 gap-x-16 gap-y-8 justify-items-center max-w-5xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-y-8 md:gap-x-16 md:gap-y-8 justify-items-center max-w-5xl mx-auto">
 
             <!-- Row 1, Card 1 - Top Left -->
             <div
-                class="w-[430px] h-[320px] bg-green shadow-xl rounded-lg p-3 transform -rotate-6 z-10 hover:rotate-0 hover:scale-105 hover:z-50 hover:shadow-2xl transition-all duration-300 ease-in-out cursor-pointer">
+                class="w-full max-w-[430px] h-[320px] bg-green shadow-xl rounded-lg p-3 transform md:-rotate-6 z-10 hover:rotate-0 hover:scale-105 hover:z-50 hover:shadow-2xl transition-all duration-300 ease-in-out cursor-pointer">
                 <div class="p-6 h-full flex flex-col border-dashed border-[3px] rounded-lg border-white">
-                    <h2 class="font-serif text-xl font-semibold mb-3 leading-tight">
+                    <h2 class="font-serif text-lg md:text-xl font-semibold mb-3 leading-tight">
                         Adaptive Augmented Reality Pathfinding for Parkinson's Disease
                     </h2>
                     <div class="flex flex-wrap gap-2 mb-4">
@@ -229,9 +265,9 @@
 
             <!-- Row 1, Card 2 - Top Right -->
             <div
-                class="w-[430px] h-[320px] bg-orange shadow-xl rounded-lg p-3 transform rotate-3 z-12 hover:rotate-0 hover:scale-105 hover:z-50 hover:shadow-2xl transition-all duration-300 ease-in-out cursor-pointer">
+                class="w-full max-w-[430px] h-[320px] bg-orange shadow-xl rounded-lg p-3 transform md:rotate-3 z-12 hover:rotate-0 hover:scale-105 hover:z-50 hover:shadow-2xl transition-all duration-300 ease-in-out cursor-pointer">
                 <div class="p-6 h-full flex flex-col border-dashed border-[3px] rounded-lg border-white">
-                    <h2 class="font-serif text-xl font-semibold mb-3 leading-tight">
+                    <h2 class="font-serif text-lg md:text-xl font-semibold mb-3 leading-tight">
                         Interactive Manipulation of Objects for 3D Gaussian Splatting
                     </h2>
                     <div class="flex flex-wrap gap-2 mb-4">
@@ -247,9 +283,9 @@
 
             <!-- Row 2 - Single card spanning both columns, centered -->
             <div
-                class="col-span-2 w-[430px] h-[320px] bg-yellow shadow-xl rounded-lg p-3 transform rotate-1 -mt-24 z-20 hover:rotate-0 hover:scale-105 hover:z-50 hover:shadow-2xl transition-all duration-300 ease-in-out cursor-pointer">
+                class="md:col-span-2 w-full max-w-[430px] h-[320px] bg-yellow shadow-xl rounded-lg p-3 transform md:rotate-1 md:-mt-24 z-20 hover:rotate-0 hover:scale-105 hover:z-50 hover:shadow-2xl transition-all duration-300 ease-in-out cursor-pointer">
                 <div class="p-6 h-full flex flex-col border-dashed border-[3px] rounded-lg border-white">
-                    <h2 class="font-serif text-xl font-semibold mb-3 leading-tight">
+                    <h2 class="font-serif text-lg md:text-xl font-semibold mb-3 leading-tight">
                         Line Drawing Vectorization
                     </h2>
                     <div class="flex flex-wrap gap-2 mb-4">
@@ -265,9 +301,9 @@
 
             <!-- Row 3, Card 4 - Bottom Left -->
             <a href="project-details.html"
-                class="w-[430px] h-[320px] bg-green shadow-xl rounded-lg p-3 transform -rotate-6 z-10 -mt-24 z-20 hover:rotate-0 hover:scale-105 hover:z-50 hover:shadow-2xl transition-all duration-300 ease-in-out cursor-pointer">
+                class="w-full max-w-[430px] h-[320px] bg-green shadow-xl rounded-lg p-3 transform md:-rotate-6 z-10 md:-mt-24 z-20 hover:rotate-0 hover:scale-105 hover:z-50 hover:shadow-2xl transition-all duration-300 ease-in-out cursor-pointer">
                 <div class="p-6 h-full flex flex-col border-dashed border-[3px] rounded-lg border-white">
-                    <h2 class="font-serif text-xl font-semibold mb-3 leading-tight">
+                    <h2 class="font-serif text-lg md:text-xl font-semibold mb-3 leading-tight">
                         Coffee Data Visualization Platform
                     </h2>
                     <div class="flex flex-wrap gap-2 mb-4">
@@ -284,9 +320,9 @@
 
             <!-- Row 3, Card 5 - Bottom Right -->
             <div
-                class="w-[430px] h-[320px] bg-orange shadow-xl rounded-lg p-3 transform rotate-3 z-10 -mt-24 z-20 hover:rotate-0 hover:scale-105 hover:z-50 hover:shadow-2xl transition-all duration-300 ease-in-out cursor-pointer">
+                class="w-full max-w-[430px] h-[320px] bg-orange shadow-xl rounded-lg p-3 transform md:rotate-3 z-10 md:-mt-24 z-20 hover:rotate-0 hover:scale-105 hover:z-50 hover:shadow-2xl transition-all duration-300 ease-in-out cursor-pointer">
                 <div class="p-6 h-full flex flex-col border-dashed border-[3px] rounded-lg border-white">
-                    <h2 class="font-serif text-xl font-semibold mb-3 leading-tight">
+                    <h2 class="font-serif text-lg md:text-xl font-semibold mb-3 leading-tight">
                         Neural Network Music Generator
                     </h2>
                     <div class="flex flex-wrap gap-2 mb-4">
