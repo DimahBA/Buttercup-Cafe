@@ -6,6 +6,9 @@ class BlackboardQA {
         this.data = data;
         this.currentTopic = null;
         this.previousTopic = null;
+
+        // History stack for robust back navigation
+        this.history = [];
         
         // DOM elements
         this.chatBubble = document.getElementById('blackboard-chat-bubble');
@@ -17,15 +20,10 @@ class BlackboardQA {
     }
 
     selectQuestion(topic) {
-        // Handle back button
-        if (topic === 'back') {
-            if (this.previousTopic) {
-                topic = this.previousTopic;
-                this.previousTopic = null;
-            } else {
-                this.reset();
-                return;
-            }
+        // Normalize "back" actions (support multiple ids like 'previous-topic')
+        if (topic === 'back' || topic === 'previous-topic' || topic === 'previous' || topic === 'prev') {
+            this.goBack();
+            return;
         }
         
         // Handle main menu
@@ -37,26 +35,58 @@ class BlackboardQA {
         const topicData = this.data[topic];
         if (!topicData) return;
         
-        // Store previous topic for back navigation
-        if (this.currentTopic && !topic.includes(this.currentTopic)) {
-            this.previousTopic = this.currentTopic;
+        // Push current topic to history when navigating to a different topic
+        if (this.currentTopic && topic !== this.currentTopic) {
+            this.history.push(this.currentTopic);
         }
+
+        // Update pointers
+        this.previousTopic = this.history.length ? this.history[this.history.length - 1] : null;
         this.currentTopic = topic;
-        
-        // Hide chat bubble with fade (DON'T use display:none or hidden class)
+
+        // Show the selected topic (handles UI + typing)
+        this._showTopic(topicData);
+    }
+
+    goBack() {
+        // If no history, return to main
+        if (!this.history.length) {
+            this.reset();
+            return;
+        }
+
+        const prev = this.history.pop();
+        const topicData = this.data[prev];
+        if (!topicData) {
+            this.reset();
+            return;
+        }
+
+        this.currentTopic = prev;
+        this.previousTopic = this.history.length ? this.history[this.history.length - 1] : null;
+
+        this._showTopic(topicData);
+    }
+
+    _showTopic(topicData) {
+        // Hide chat bubble (keep layout)
         if (this.chatBubble) this.chatBubble.style.opacity = '0';
-        
+
+        // Stop any current typing and clear text to avoid half-filled content
+        this.engine.stop();
+        if (this.answerElement) this.answerElement.textContent = '';
+
         setTimeout(() => {
-            // Show dialogue box (just opacity, it's always in the DOM)
+            // Show dialogue (opacity only, element stays mounted)
             if (this.dialogue) this.dialogue.style.opacity = '1';
-            
+
             // Start typewriter effect
             this.engine.type(topicData.answer, this.answerElement, this.cursorElement, {
                 speed: 30
             });
         }, 300);
         
-        // Update blackboard with follow-up questions
+        // Update follow-up buttons
         this.updateFollowups(topicData.followups);
     }
 
@@ -88,6 +118,7 @@ class BlackboardQA {
     reset() {
         this.currentTopic = null;
         this.previousTopic = null;
+        this.history = [];
         
         // Stop typewriter
         this.engine.stop();
