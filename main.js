@@ -1,9 +1,9 @@
+// main.js
 // Main initialization file
 // This file brings everything together
 
-
 // Initialize everything when DOM loads
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Create typewriter engine with custom config
     const typewriterEngine = new TypewriterEngine({
         baseSpeed: 20,
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize intro typewriter
     const introElement = document.getElementById('typewriter-text');
     const introCursor = document.getElementById('cursor');
-    
+
     if (introElement && introCursor) {
         const introTypewriter = new IntroTypewriter(
             typewriterEngine,
@@ -23,21 +23,12 @@ document.addEventListener('DOMContentLoaded', function() {
             introElement,
             introCursor
         );
-        
-        // Start chat bubble animation
-        //animateChatBubble("chat-bubble");
-        //animateChatBubble("blackboard-chat-bubble");
-        
-        // Show cursor before typing starts
-        setTimeout(() => {
-            introCursor.classList.remove('cursor-hidden');
-            introCursor.classList.add('cursor-visible');
-        }, 2000);
-        
-        // Start typing
-        setTimeout(() => {
-            introTypewriter.start();
-        }, 3500);
+
+        // Make accessible to section-animations
+        window.introTypewriter = introTypewriter;
+
+        // Do NOT auto-start typing here.
+        // SectionAnimations will start typing after the chat box animation finishes.
     }
 
     // Initialize blackboard Q&A
@@ -47,7 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
         pauseWords: [',', '.', '!', '?'],
         pauseDuration: 200
     });
-    
+
     blackboardQA = new BlackboardQA(blackboardEngine, contentData.blackboard);
-    blackboardQA.animateChatBubble();
 });

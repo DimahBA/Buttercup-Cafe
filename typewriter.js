@@ -1,3 +1,4 @@
+// typewriter.js
 // Reusable typewriter effect engine
 class TypewriterEngine {
     constructor(config = {}) {
