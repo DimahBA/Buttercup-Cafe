@@ -23,58 +23,44 @@ const contentData = {
     // Q&A Blackboard content
     blackboard: {
         education: {
-            answer: "I'm currently studying IT with a focus on Computer Graphics and HCI. I love exploring how technology can create meaningful and beautiful experiences!",
+            answer: "I'm a Master's student in IT with a focus on Computer Graphics and Human-Computer interactions. I love exploring how technology can create beautiful experiences, especially in AR settings.",
             followups: [
                 { id: 'education-uni', text: 'Which university?' },
-                { id: 'education-courses', text: 'Favorite courses?' },
                 { id: 'education-skills', text: 'Key skills?' },
                 { id: 'back', text: '← Back' }
             ]
         },
         'education-uni': {
-            answer: "I'm studying at [Your University Name]! It's been an amazing journey learning both the theoretical and practical aspects of computer science.",
+            answer: "I'm studying at Institut Polytechnique de Paris!",
             followups: [
                 { id: 'back', text: '← Back to Education' },
                 { id: 'main', text: '← Main Menu' }
             ]
         },
-        'education-courses': {
-            answer: "My favorite courses include Computer Graphics, Human-Computer Interaction, and Data Visualization. I love anything that combines creativity with code!",
-            followups: [
-                { id: 'back', text: '← Back to Education' },
-                { id: 'main', text: '← Main Menu' }
-            ]
-        },
+
         'education-skills': {
-            answer: "I've developed skills in Unity 3D, WebGL, JavaScript, Python, and various graphics libraries. I'm always eager to learn new technologies!",
+            answer: "I've developed skills in Unity 3D, C++, and JavaScript. And I learned a lot about usability and design throughout my studies.",
             followups: [
                 { id: 'back', text: '← Back to Education' },
                 { id: 'main', text: '← Main Menu' }
             ]
         },
         projects: {
-            answer: "I work on various projects ranging from AR applications for healthcare to interactive data visualizations. Each project teaches me something new about the intersection of design and technology!",
+            answer: "I have lots of projects .. Check them out below !",
             followups: [
                 { id: 'projects-favorite', text: 'Favorite project?' },
-                { id: 'projects-current', text: 'Current projects?' },
                 { id: 'projects-future', text: 'Future plans?' },
                 { id: 'back', text: '← Back' }
             ]
         },
         'projects-favorite': {
-            answer: "My favorite project is the AR Pathfinding system for Parkinson's patients. It combines meaningful impact with technical challenge - exactly what I love!",
+            answer: "My favorite project is the AR Pathfinding system for Parkinson's patients. It was my personal research project where I got to see a real impact on patients who suffered from mobility issues. It was an example of how technology can make people's lives a bit better and it's what I would love to work on in the future.",
             followups: [
                 { id: 'back', text: '← Back to Projects' },
                 { id: 'main', text: '← Main Menu' }
             ]
         },
-        'projects-current': {
-            answer: "Right now I'm working on improving 3D Gaussian Splatting interactions and exploring new ways to visualize complex data. There's always something exciting in progress!",
-            followups: [
-                { id: 'back', text: '← Back to Projects' },
-                { id: 'main', text: '← Main Menu' }
-            ]
-        },
+
         'projects-future': {
             answer: "I want to explore more AR/VR applications in healthcare and education. The potential to create accessible, helpful technology really motivates me!",
             followups: [
@@ -83,39 +69,31 @@ const contentData = {
             ]
         },
         music: {
-            answer: "Music is my creative outlet! I enjoy playing instruments and even built a Neural Network Music Generator. There's something magical about the intersection of code and melody ✨",
+            answer: "I love music .. what would you like to know ?",
             followups: [
                 { id: 'music-instruments', text: 'What instruments?' },
                 { id: 'music-genres', text: 'Favorite genres?' },
-                { id: 'music-coding', text: 'Music + coding?' },
                 { id: 'back', text: '← Back' }
             ]
         },
         'music-instruments': {
-            answer: "I play [your instruments]! Each instrument offers a different way to express creativity, just like different programming languages.",
+            answer: "I play piano, guitar, and violin!",
             followups: [
                 { id: 'back', text: '← Back to Music' },
                 { id: 'main', text: '← Main Menu' }
             ]
         },
         'music-genres': {
-            answer: "I love [your favorite genres]! Different genres inspire different moods when I'm coding - upbeat for debugging, calm for design work.",
+            answer: "I love Heavy Metal and Electro.",
             followups: [
                 { id: 'back', text: '← Back to Music' },
                 { id: 'main', text: '← Main Menu' }
             ]
         },
-        'music-coding': {
-            answer: "Music and coding both require creativity, pattern recognition, and attention to detail. My Neural Network Music Generator project was a perfect blend of both passions!",
-            followups: [
-                { id: 'back', text: '← Back to Music' },
-                { id: 'main', text: '← Main Menu' }
-            ]
-        },
+
         'cats-dogs': {
-            answer: "Definitely cats! 🐱 They're independent, curious, and have that perfect balance of affection and mystery. Plus, they're excellent coding companions who know when to demand attention breaks!",
+            answer: "Definitely cats! 🐱",
             followups: [
-                { id: 'cats-dogs-why', text: 'Why cats?' },
                 { id: 'cats-dogs-pet', text: 'Do you have a cat?' },
                 { id: 'back', text: '← Back' }
             ]
@@ -128,7 +106,7 @@ const contentData = {
             ]
         },
         'cats-dogs-pet': {
-            answer: "[Customize this with your answer - whether you have a cat, want one, etc.]",
+            answer: "Sadly not, I've never had one .. But I can't wait !",
             followups: [
                 { id: 'back', text: '← Back to Cats or Dogs' },
                 { id: 'main', text: '← Main Menu' }
